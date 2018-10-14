@@ -1,0 +1,69 @@
+﻿@model excelwebtest2.Controllers.CheckListModel
+
+@{
+    ViewBag.Title = "CheckList";
+}
+
+<h2>CheckList</h2>
+
+<style>
+    ul {
+        list-style: none;
+    }
+</style>
+
+@using (Html.BeginForm("CheckList", "Home", FormMethod.Post, null))
+{
+    <ul class="checklist">
+        @for (int i = 0; i < Model.Foos.Count; i++)
+        {
+            <li data-checklist-item-container="true">
+                @Html.Hidden("Foos.Index", i)
+                <label>@Html.CheckBoxFor(model => Model.Foos[i].IsSelected, new { @data_checklist_item=true}) @Model.Foos[i].Description</label>
+                @Html.HiddenFor(model => Model.Foos[i].IsSelected, false)
+                @Html.HiddenFor(model => Model.Foos[i].Id)
+                @Html.HiddenFor(model => Model.Foos[i].Description)
+                <ul data-checklist-subitems-container="true">
+                    @for (int j = 0; j < Model.Foos[i].SubItems.Count; j++)
+                    {
+                        <li>
+                            @Html.Hidden("Foos[" + i + "].SubItems.Index", j)
+                            <label>@Html.CheckBoxFor(model => Model.Foos[i].SubItems[j].IsSelected, new { data_checklist_subitem=true}) @Model.Foos[i].SubItems[j].Description</label>
+                            @Html.HiddenFor(model => Model.Foos[i].SubItems[j].IsSelected, false)
+                            @Html.HiddenFor(model => Model.Foos[i].SubItems[j].Id)
+                            @Html.HiddenFor(model => Model.Foos[i].SubItems[j].Description)
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+    <input type="submit" />
+}
+@section scripts{
+
+<script>
+    $(function () {
+        //when clicking the parent checkbox , set the childrens to the same state
+        $("body").on("change", "[data-checklist-item]", function (evt) {
+            let $parentChk = $(this);
+            let parentChkState = $parentChk.prop("checked");
+            $parentChk.closest("[data-checklist-item-container]")
+                      .find("[data-checklist-subitem]")
+                      .prop('checked', parentChkState)
+        });
+
+        //If at least one children is checked, then the parent checkbox should be checked
+        //If there are no checked children, the parent checkbox should be uncheked
+        $("body").on("change", "[data-checklist-subitem]", function (evt) {
+            let $childChk = $(this);
+            let $parentChk = $childChk.closest("[data-checklist-item-container]").find("[data-checklist-item]");
+
+            let $checkedChilds = $childChk.closest("[data-checklist-subitems-container]").find("[data-checklist-subitem]:checked");
+            let parentChkState = $checkedChilds.length > 0;
+            $parentChk.prop("checked", parentChkState);
+        })
+    })
+</script>
+    
+}

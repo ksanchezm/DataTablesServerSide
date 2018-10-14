@@ -1,0 +1,11 @@
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\obj\Debug\DataTablesServerSide.csprojResolveAssemblyReference.cache
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\DataTablesServerSide.dll
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\DataTablesServerSide.pdb
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\obj\Debug\DataTablesServerSide.dll
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\obj\Debug\DataTablesServerSide.pdb
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\Dapper.dll
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\QueryBuilder.dll
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\SqlKata.Execution.dll
+C:\Users\sysxp\Documents\Visual Studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\Dapper.xml
+C:\Users\sysxp\documents\visual studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sysxp\documents\visual studio 2015\Projects\ExcelWebTest\DataTablesServerSide\bin\Debug\Newtonsoft.Json.xml

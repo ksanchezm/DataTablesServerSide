@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+
+    <h2>Test</h2>
+
+    <table id="testTable"></table>
+
+    @section scripts{
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <style>
+            th.sorting_asc::after {
+                content: " [asc] ";
+            }
+
+            th.sorting_desc::after {
+                content: " [desc] ";
+            }
+        </style>
+        <script>
+        $(function () {
+            $("#testTable").dataTable({
+                searchDelay: 800,
+                columns: [
+                    { name: "Id", title: "Id", data: "Id", searchable: true, sortable: false },
+                    { name: "DOB", title: "DOB", data: "DOB", searchable:true, sortable: true },
+                    { name: "FirstName", title: "First Name", data: "FirstName", searchable: true, sortable: true },
+                    { name: "LastName", title: "Last Name", data: "LastName", searchable: false, sortable: true },
+                    { name: "Active", title: "Status", data: "Active", searchable: true, sortable: true }
+                ],
+                serverSide: true,
+                ajax: {
+                    url: "HandleDataRequest",
+                    type: "POST",
+                    data: function (d) {
+                        let ordProp = $.map(d.order, function (elem, i) {
+                            var res = {
+                                order: i,
+                                direction: elem.dir == "desc" ? "descending" : "ascending",
+                                column: d.columns[elem.column].data
+                            };
+                            return res;
+                        });
+                        d.Sort = ordProp;
+                        delete d.order;
+                        return d;
+                    }
+                }
+            })
+        });
+        </script>
+        <script>
+        $("#searchBtn").on("click", function () {
+            fnSearch();
+        })
+        $("#clearBtn").on("click", function () {
+            var $inputs = $("#searchPanel input[type=text]").val('');
+            fnSearch();
+        })
+        function fnSearch() {
+            var myTable = $("#testTable").DataTable();
+            var $inputs = $("#searchPanel input[type=text]").each(function (i, elem) {
+                var $elem = $(elem);
+                var dtCol = $elem.data('dtcolumn') + ":name";
+                var searchVal = $elem.val();
+                myTable.columns(dtCol).search(searchVal);
+            });
+            myTable.draw();
+        }
+        </script>
+    }

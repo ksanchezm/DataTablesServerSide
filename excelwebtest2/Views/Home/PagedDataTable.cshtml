@@ -1,0 +1,69 @@
+﻿@model IEnumerable<excelwebtest2.Controllers.User>
+
+@{
+    ViewBag.Title = "PagedDataTable";
+}
+
+<h2>PagedDataTable</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_USUARIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_PASSWORD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_TEST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUA_TEST_2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_APELLIDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_USUARIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_PASSWORD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_TEST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUA_TEST_2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
